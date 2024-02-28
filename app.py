@@ -17,16 +17,14 @@ def main():
 
     # Collect user input features
     rate_of_service = st.sidebar.slider('Rate of service', 0.0, 6.0, 3.0, step=0.1)
-    #glucose = st.sidebar.slider('Glucose', 0, 199, 117)
-    # Add more numerical features...
-
+    
     # Apply scaling to numerical features
     scaled_rate_of_service = scaler.transform([[rate_of_service]])[0][0]
-   # scaled_glucose = scaler.transform([[glucose]])[0][0]
+ 
     # Apply scaling to more numerical features...
 
     # Categorical features
-    #st.sidebar.subheader('Categorical Features')
+
 
     # Define dropdown lists for each one-hot encoded categorical feature
     model = st.sidebar.selectbox('Vehicle model', ['Model_general_ACCORD', 'Model_general_BR-V', 'Model_general_CITY',
@@ -39,7 +37,7 @@ def main():
        'Vehicle_age_13', 'Vehicle_age_14', 'Vehicle_age_15', 'Vehicle_age_2',
        'Vehicle_age_3', 'Vehicle_age_4', 'Vehicle_age_5', 'Vehicle_age_6',
        'Vehicle_age_7', 'Vehicle_age_8', 'Vehicle_age_9', 'Vehicle_age_>15'])
-    # Add more dropdown lists for other one-hot encoded categorical features...
+
 
     # Map dropdown list values to numerical values
     model_mapping = {'Model_general_ACCORD': 0, 'Model_general_BR-V': 1, 'Model_general_CITY': 2,
@@ -60,10 +58,8 @@ def main():
 
     # Make predictions
     input_data = {
-       # 'Pregnancies': scaled_pregnancies,
-       # 'Glucose': scaled_glucose,
+     
         'rate_of_service_normalized': scaled_rate_of_service,
-        # Include more numerical and encoded categorical features...
         'Model_general_ACCORD': 1 if model_encoded == 0 else 0,
         'Model_general_BR-V': 1 if model_encoded == 1 else 0,
         'Model_general_CITY': 1 if model_encoded == 2 else 0,
@@ -98,20 +94,17 @@ def main():
          'Vehicle_age_8': 1 if age_encoded == 14 else 0,
          'Vehicle_age_9': 1 if age_encoded == 15 else 0,
          'Vehicle_age_>15': 1 if age_encoded == 16 else 0,
- 
-        
-        'Age_Middle-aged': 1 if age_encoded == 1 else 0,
-        'Age_Elderly': 1 if age_encoded == 2 else 0
-        # Add more encoded categorical features...
+       
+      
     }
     input_df = pd.DataFrame([input_data])
     prediction = model.predict(input_df)
 
     st.subheader('Prediction')
     if prediction[0] == 0:
-        st.write('No diabetes')
+        st.write('No Churn')
     else:
-        st.write('Diabetes')
+        st.write('Churn')
 
 if __name__ == '__main__':
     main()
