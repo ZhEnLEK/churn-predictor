@@ -51,7 +51,21 @@ def preprocess_input(model_general, vehicle_age, rate_of_service):
 # Streamlit interface
 st.title('Churn Prediction App')
 
-expected_columns = [
+
+
+# Input fields
+model_general = st.selectbox('Select Model General', ['ACCORD', 'BR-V', 'CITY', 'CIVIC', 'CR-V', 'CR-Z', 'FREED', 'HR-V', 'INSIGHT', 'JAZZ', 'ODYSSEY', 'OTHERS', 'PRELUDE', 'STREAM'])
+vehicle_age = st.selectbox('Select Vehicle Age', ['0', '1', '10', '11', '12', '13', '14', '15', '2', '3', '4', '5', '6', '7', '8', '9', '>15'])
+rate_of_service = st.slider('Rate of Service', min_value=0.0, max_value=6.0, step=0.1)
+
+# Predict button
+if st.button('Predict'):
+    input_data = preprocess_input(model_general, vehicle_age, rate_of_service)
+   
+    prediction = model.predict(input_data)
+    st.write(f'Churn Prediction: {prediction}')
+    
+    expected_columns = [
     'Model_general_ACCORD', 'Model_general_BR-V', 'Model_general_CITY',
     'Model_general_CIVIC', 'Model_general_CR-V', 'Model_general_CR-Z',
     'Model_general_FREED', 'Model_general_HR-V', 'Model_general_INSIGHT',
@@ -64,20 +78,11 @@ expected_columns = [
     'rate_of_service_normalized'
 ]
 
-if set(input_data.columns) == set(expected_columns):
-    print("The input_data matches the expected feature columns.")
-else:
-    print("There's a mismatch between the input_data and expected feature columns.")
+    if set(input_data.columns) == set(expected_columns):
+        print("The input_data matches the expected feature columns.")
+    else:
+        print("There's a mismatch between the input_data and expected feature columns.")
 
-# Input fields
-model_general = st.selectbox('Select Model General', ['ACCORD', 'BR-V', 'CITY', 'CIVIC', 'CR-V', 'CR-Z', 'FREED', 'HR-V', 'INSIGHT', 'JAZZ', 'ODYSSEY', 'OTHERS', 'PRELUDE', 'STREAM'])
-vehicle_age = st.selectbox('Select Vehicle Age', ['0', '1', '10', '11', '12', '13', '14', '15', '2', '3', '4', '5', '6', '7', '8', '9', '>15'])
-rate_of_service = st.slider('Rate of Service', min_value=0.0, max_value=6.0, step=0.1)
 
-# Predict button
-if st.button('Predict'):
-    input_data = preprocess_input(model_general, vehicle_age, rate_of_service)
-    prediction = model.predict(input_data)
-    st.write(f'Churn Prediction: {prediction}')
 
 
