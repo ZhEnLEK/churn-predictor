@@ -42,9 +42,6 @@ def preprocess_input(model_general, vehicle_age, rate_of_service):
     # Combine encoded features with 'rate_of_service'
     input_data = pd.concat([model_general_encoded, vehicle_age_encoded, pd.Series(rate_of_service_normalized, name='rate_of_service_normalized')], axis=1)
 
-  
-  
-    
     return input_data
 
 
@@ -61,7 +58,6 @@ rate_of_service = st.slider('Rate of Service', min_value=0.0, max_value=6.0, ste
 # Predict button
 if st.button('Predict'):
     input_data = preprocess_input(model_general, vehicle_age, rate_of_service)
-   
     prediction = model.predict(input_data)
     st.write(f'Churn Prediction: {prediction}')
     
