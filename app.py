@@ -42,7 +42,16 @@ def preprocess_input(model_general, vehicle_age, rate_of_service):
     # Combine encoded features with 'rate_of_service'
     input_data = pd.concat([model_general_encoded, vehicle_age_encoded, pd.Series(rate_of_service_normalized, name='rate_of_service_normalized')], axis=1)
 
-  expected_columns = [
+  
+  
+    
+    return input_data
+
+
+# Streamlit interface
+st.title('Churn Prediction App')
+
+expected_columns = [
     'Model_general_ACCORD', 'Model_general_BR-V', 'Model_general_CITY',
     'Model_general_CIVIC', 'Model_general_CR-V', 'Model_general_CR-Z',
     'Model_general_FREED', 'Model_general_HR-V', 'Model_general_INSIGHT',
@@ -59,13 +68,6 @@ if set(input_data.columns) == set(expected_columns):
     print("The input_data matches the expected feature columns.")
 else:
     print("There's a mismatch between the input_data and expected feature columns.")
-  
-    
-    return input_data
-
-
-# Streamlit interface
-st.title('Churn Prediction App')
 
 # Input fields
 model_general = st.selectbox('Select Model General', ['ACCORD', 'BR-V', 'CITY', 'CIVIC', 'CR-V', 'CR-Z', 'FREED', 'HR-V', 'INSIGHT', 'JAZZ', 'ODYSSEY', 'OTHERS', 'PRELUDE', 'STREAM'])
