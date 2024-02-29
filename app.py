@@ -77,7 +77,11 @@ if st.button('Predict'):
 
     st.write(input_data)
     prediction = model.predict(input_data)
-    st.write(f'Churn Prediction: {prediction}')
+   # st.write(f'Churn Prediction: {prediction}')
+    if prediction[0] == 0:
+        st.write('No Churn')
+    else:
+        st.write('Churn')
     
     
 
