@@ -58,6 +58,7 @@ rate_of_service = st.slider('Rate of Service', min_value=0.0, max_value=6.0, ste
 # Predict button
 if st.button('Predict'):
     input_data = preprocess_input(model_general, vehicle_age, rate_of_service)
+    st.write(input_data)
     prediction = model.predict(input_data)
     st.write(f'Churn Prediction: {prediction}')
     
