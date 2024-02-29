@@ -61,3 +61,21 @@ if st.button('Predict'):
     input_data = preprocess_input(model_general, vehicle_age, rate_of_service)
     prediction = model.predict(input_data)
     st.write(f'Churn Prediction: {prediction}')
+
+expected_columns = [
+    'Model_general_ACCORD', 'Model_general_BR-V', 'Model_general_CITY',
+    'Model_general_CIVIC', 'Model_general_CR-V', 'Model_general_CR-Z',
+    'Model_general_FREED', 'Model_general_HR-V', 'Model_general_INSIGHT',
+    'Model_general_JAZZ', 'Model_general_ODYSSEY', 'Model_general_OTHERS',
+    'Model_general_PRELUDE', 'Model_general_STREAM', 'Vehicle_age_0',
+    'Vehicle_age_1', 'Vehicle_age_10', 'Vehicle_age_11', 'Vehicle_age_12',
+    'Vehicle_age_13', 'Vehicle_age_14', 'Vehicle_age_15', 'Vehicle_age_2',
+    'Vehicle_age_3', 'Vehicle_age_4', 'Vehicle_age_5', 'Vehicle_age_6',
+    'Vehicle_age_7', 'Vehicle_age_8', 'Vehicle_age_9', 'Vehicle_age_>15',
+    'rate_of_service_normalized'
+]
+
+if set(input_data.columns) == set(expected_columns):
+    print("The input_data matches the expected feature columns.")
+else:
+    print("There's a mismatch between the input_data and expected feature columns.")
