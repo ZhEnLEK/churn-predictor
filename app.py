@@ -4,7 +4,7 @@ from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 import joblib
 
 # Load model
-model = joblib.load('model.pkl')
+model = joblib.load('model2.pkl')
 
 # Function to preprocess input data
 def preprocess_input(model_general, vehicle_age, rate_of_service):
