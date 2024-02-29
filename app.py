@@ -36,7 +36,7 @@ def preprocess_input(model_general, vehicle_age, rate_of_service):
             vehicle_age_encoded[column] = 0
 
     
-    scaler = MinMaxScaler()
+    scaler = MinMaxScaler(feature_range=(0, 6))
     rate_of_service_normalized = scaler.fit_transform([[rate_of_service]])[0][0]
     
     # Combine encoded features with 'rate_of_service'
