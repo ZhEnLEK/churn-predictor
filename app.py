@@ -28,7 +28,7 @@ def preprocess_input(model_general, vehicle_age, rate_of_service):
         if column not in vehicle_age_encoded.columns:
             vehicle_age_encoded[column] = 0
     
-   scaler = MinMaxScaler()
+    scaler = MinMaxScaler()
     rate_of_service_normalized = scaler.fit_transform([[rate_of_service]])[0][0]
     
     # Combine encoded features with 'rate_of_service'
