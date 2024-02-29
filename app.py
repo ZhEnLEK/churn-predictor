@@ -74,9 +74,6 @@ if st.button('Predict'):
 
 # Reorder input_data columns
     input_data = input_data.reindex(columns=expected_columns)
-    st.write(rate_of_service)
-   # st.write(scaler.fit_transform([[rate_of_service]]))
-
     st.write(input_data)
     prediction = model.predict(input_data)
    # st.write(f'Churn Prediction: {prediction}')
