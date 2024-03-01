@@ -36,9 +36,9 @@ def preprocess_input(model_general, vehicle_age, rate_of_service):
             vehicle_age_encoded[column] = 0
 
     
-    scaler = MinMaxScaler(feature_range=(0, 6))
-    rate_of_service_normalized = scaler.fit_transform([[rate_of_service]])[0][0]
-    
+    #scaler = MinMaxScaler(feature_range=(0, 6))
+    #rate_of_service_normalized = scaler.fit_transform([[rate_of_service]])[0][0]
+    rate_of_service_normalized = rate_of_service/6
     # Combine encoded features with 'rate_of_service'
     input_data = pd.concat([model_general_encoded, vehicle_age_encoded, pd.Series(rate_of_service_normalized, name='rate_of_service_normalized')], axis=1)
 
